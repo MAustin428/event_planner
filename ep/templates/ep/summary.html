@@ -1,0 +1,38 @@
+<head>
+	<style>
+		h1 {font-size: 36px; font-variant: small-caps; padding-left: 100px;}
+		li {display: inline-block;}
+		td {font-size: 18px}
+		.button {border-bottom: 2px solid black; border-right: 2px solid black; 
+				border-bottom-right-radius: 10px; padding-right: 5px;}
+		table {border-spacing: 10px;}
+	</style>
+</head>
+<body>
+<div i="titleBar">
+	<h1>List of Events</h1>
+	<ul>
+		<li class="button"><a href="{% url 'ep:new' %}">New</a></li>
+		<li class="button">History</li>
+	</ul>
+</div>
+<div id="eventList">
+
+	<table>
+    <tr>
+      <th>Name</th>
+      <th>Event Date</th>
+      <th>Associate</th>
+    </tr>
+	{% for event in all_events %}
+	    <tr>
+	      <td>{{ event.cust_name }}</td>
+	      <td>{{ event.event_date }}</td>
+	      <td>{{ event.assoc_name }}</td>
+	      <td class="button">View</td>
+	      <td class="button">Edit</td>
+	    </tr>
+	{% endfor %}
+  </table>
+</div>
+</body>

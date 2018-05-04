@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+input[type=text]{
+	display: block;
+    width: 40%;
+    padding: 12px 20px;
+    margin: 16px auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+	text-align: center;
+
+}
+
+input[type=password]{
+	display: block;
+    width: 40%;
+    padding: 12px 20px;
+    margin: 8px 400px+auto;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+	text-align: center;
+
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+}
+
+.imgcontainer {
+    text-align: center;
+    margin: 24px 0 12px 0;
+}
+
+img.avatar {
+    width: 40%;
+    border-radius: 50%;
+}
+
+.container {
+    padding: 16px;
+}
+
+span.psw {
+    float: right;
+    padding-top: 16px;
+}
+
+
+</style>
+</head>
+<body>
+
+<h2>Edit/New Event</h2>
+
+<form action="{% url 'ep:new' %}" method="post">
+  {% csrf_token %}
+	<!---Customer Name: <input type="text" name="cust_name" value=""><br>
+	Customer Phone #: <input type="text" name="cust_phone" value=""><br>
+	Event Date: <input type="date" id="event_date" value=""><br>
+	Pickup Date: <input type="date" id="pickup_date" value=""><br>
+	Associate: <input type="text" name="assoc_name" value=""><br>
+	Total amount: <input type="text" name="total_amt" value=""><br>
+	Total cost: <input type="text" name="total_cost" value=""><br>
+	Return amount: <input type="text" name="return_amt" value=""><br>-->
+
+  {{ form }}
+<button type="cancel" onclick="window.location='http://stackoverflow.com';return false;">Cancel</button>
+<input type="reset" value="Reset">
+<input type="submit" value="Enter">
+</form>
+
+</body>
+</html>

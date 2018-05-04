@@ -25,12 +25,15 @@ def summary(request):
 
 def new(request):
 	if request.method == 'POST':
-		form = EventForm(request.POST)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.entry_date = datetime.today()
-			post.save()
+		if 'cancel' in request.POST:
 			return redirect('ep:summary')
+		else:
+			form = EventForm(request.POST)
+			if form.is_valid():
+				post = form.save(commit=False)
+				post.entry_date = datetime.today()
+				post.save()
+				return redirect('ep:summary')
 	else:
 		form = EventForm()
 	return render(request, 'ep/InformationReader.html', {'form': form})

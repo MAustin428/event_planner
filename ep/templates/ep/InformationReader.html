@@ -68,7 +68,9 @@ span.psw {
 
 <h2>Edit/New Event</h2>
 
-<form action="{% url 'ep:new' %}" method="post">
+<form action="{% url return_func %}" method="post">
+  <input type="submit" name="delete" value="delete">
+
   {% csrf_token %}
 	<!---Customer Name: <input type="text" name="cust_name" value=""><br>
 	Customer Phone #: <input type="text" name="cust_phone" value=""><br>
@@ -80,9 +82,10 @@ span.psw {
 	Return amount: <input type="text" name="return_amt" value=""><br>-->
 
   {{ form }}
-<input type="submit" name="cancel" value="Cancel" formnovalidate="formnovalidate">
-<input type="reset" value="Reset">
-<input type="submit" name="submit" value="Enter">
+
+  <input type="submit" name="cancel" value="Cancel">
+  <input type="reset" value="Reset">
+  <input type="submit" name="submit" value={{ button_value }}>
 </form>
 
 </body>

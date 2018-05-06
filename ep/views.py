@@ -36,19 +36,27 @@ def new(request):
 				return redirect('ep:summary')
 	else:
 		form = EventForm()
-	return render(request, 'ep/InformationReader.html', {'form': form})
+	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Enter', 'return_func':'ep:new'})
 
 # Updates existing entry when user presses the save button on the Edit Event page
 def update(request, pk):
 	event = get_object_or_404(Event, pk=pk)
 	if request.method == "POST":
-		form = EventForm(request.POST, instance=event)
-		if form.is_valid():
-			form.save()
+		print(request.method)
+		if 'cancel' in request.POST:
 			return redirect('ep:summary')
+		elif 'delete' in request.POST:
+			event.delete()
+			return redirect('ep:summary')
+		else:
+			form = EventForm(request.POST, instance=event)
+			if form.is_valid():
+				form.save()
+				return redirect('ep:summary')
 	else:
 		form = EventForm(instance=event)
-	return render(request, 'ep/InformationReader.html', {'form': form})
+	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Update', 'return_func':'ep:update', 'param':event.pk})
+
 
 def view_event(request, pk):
 	event = get_object_or_404(Event, pk=pk)

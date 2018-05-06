@@ -1,7 +1,7 @@
 from .models import Event_Item, Event
 from .forms import EventForm
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, Http404
 
 from datetime import datetime
@@ -41,11 +41,18 @@ def new(request):
 # Updates existing entry when user presses the save button on the Edit Event page
 def update(request, pk):
 	event = get_object_or_404(Event, pk=pk)
-	return render(request, 'ep/view_event.html')
+	if request.method == "POST":
+		form = EventForm(request.POST, instance=event)
+		if form.is_valid():
+			form.save()
+			return redirect('ep:summary')
+	else:
+		form = EventForm(instance=event)
+	return render(request, 'ep/InformationReader.html', {'form': form})
 
 def view_event(request, pk):
 	event = get_object_or_404(Event, pk=pk)
-	return render(request, 'ep/view_event.html', pk=event.pk)
+	return redirect('ep/view_event.html', pk=event.pk)
 
 # Returns event information when user presses the View Event button
 def view_entry(entry_index):

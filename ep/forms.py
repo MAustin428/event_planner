@@ -1,8 +1,17 @@
-from django.forms import ModelForm
+from django import forms
 from ep.models import Event
 
-class EventForm(ModelForm):
+class DateInput(forms.DateInput):
+	input_type = 'date'
+
+class EventForm(forms.ModelForm):
 	class Meta:
 		model = Event
-		fields = ['in_history', 'cust_name', 'cust_phone', 'event_date', 'pickup_date',
-				  'assoc_name', 'entry_date', 'total_amt', 'total_cost', 'return_amt']
+		fields = '__all__'
+		widgets = {
+			'event_date': DateInput(),
+			'entry_date': DateInput(),
+			'pickup_date': DateInput(),
+			'': forms.Textarea(attrs={'rows':10,'cols':80}),
+		}
+				  

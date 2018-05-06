@@ -6,27 +6,15 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
-input[type=text]{
-	display: block;
-    width: 40%;
-    padding: 12px 20px;
-    margin: 16px auto;
+.formInput{
+  display: block;
+    width: 90%;
+    padding: 1px 20px;
+    margin: 10px auto;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: 0px solid #ccc;
     box-sizing: border-box;
-	text-align: center;
-
-}
-
-input[type=password]{
-	display: block;
-    width: 40%;
-    padding: 12px 20px;
-    margin: 8px 400px+auto;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-	text-align: center;
+  text-align: left;
 
 }
 
@@ -40,27 +28,23 @@ input[type=password]{
   border-right: 1px solid #333333;
   border-bottom: 1px solid #333333;
   border-left: 1px solid #CCCCCC;
+  
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
 }
 
-.imgcontainer {
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
     text-align: center;
-    margin: 24px 0 12px 0;
-}
-
-img.avatar {
-    width: 40%;
-    border-radius: 50%;
-}
-
-.container {
-    padding: 16px;
-}
-
-span.psw {
-    float: right;
-    padding-top: 16px;
-}
-
+    padding: 8px;
+} 
 
 </style>
 </head>
@@ -68,23 +52,36 @@ span.psw {
 
 <h2>Edit/New Event</h2>
 
-<form method="post">
-  <input type="submit" name="delete" value="delete">
 
+<form action="{% url 'ep:new' %}" method="post">
   {% csrf_token %}
-	<!---Customer Name: <input type="text" name="cust_name" value=""><br>
-	Customer Phone #: <input type="text" name="cust_phone" value=""><br>
-	Event Date: <input type="date" id="event_date" value=""><br>
-	Pickup Date: <input type="date" id="pickup_date" value=""><br>
-	Associate: <input type="text" name="assoc_name" value=""><br>
-	Total amount: <input type="text" name="total_amt" value=""><br>
-	Total cost: <input type="text" name="total_cost" value=""><br>
-	Return amount: <input type="text" name="return_amt" value=""><br>-->
 
-  {{ form }}
-  <input type="submit" name="cancel" value="Cancel">
-  <input type="reset" value="Reset">
-  <input type="submit" name="submit" value={{ button_value }}>
+
+    <p class="formInput">To History?: {{form.in_history}}</p>
+
+    <p class="formInput">Entry Date: {{form.entry_date}}</p>
+
+    <p class="formInput">Associate Name: {{form.assoc_name}}</p>
+
+    <p class="formInput">Customer Name: {{form.cust_name}}</p>
+
+    <p class="formInput">Customer Phone Number: {{form.cust_phone}}</p>
+
+    <p class="formInput">Event Date: {{form.event_date}}</p>
+
+    <p class="formInput">Pickup Date: {{form.pickup_date}}</p>
+<hr width="95%>
+    <p class="formInput">Total Drinks Purchased: {{form.total_amt}}</p>
+<hr width="95%>
+      <p class="formInput">Total Amount: {{form.total_cost}}</p>
+    <p class="formInput">Return Amount: {{form.return_amt}}</p>
+<table>
+        <tr>
+    <td><input type="submit" name="cancel" value="Cancel" formnovalidate="formnovalidate" class="button"></td>
+  <td><input type="reset" value="Reset" class="button"></td>
+  <td><input type="submit" name="submit" value="Save" class="button"></td>
+  </tr>
+  </table>
 </form>
 
 </body>

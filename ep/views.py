@@ -6,21 +6,24 @@ from django.http import HttpResponse, Http404
 
 from datetime import datetime
 
-
-#For testing purposes only
-jz = ['Jerry Zhang', '880-090-5585', '2018-08-07', '2018-08-06', 'Mark D',
-	  '2018-04-17', [ ['Kitchen Sink Moscato', 750, 8.99, 3], ['Cheval Quancard', 750, 12.99, 6], 
-	  ['Jameson', 1750, 29.99, 1] ], 85, 420, 0]
-
-pdl2 = [ ['Kitchen Sink Moscato', 750, 8.99, 3], ['Cheval Quancard', 750, 12.99, 6], ['Jameson', 1750, 29.99, 1] ]
-
-
 # Create your views here.
 e_list = list(Event.objects.all())
 
+def history(request, title): 
+
+	if(title == 'List of Events'):
+		all_events = Event.objects.all()
+		context = {'all_events': all_events, 'title': 'History', 'history': 'Events'}
+		return render(request, 'ep/summary.html', context)
+	else:
+		return summary(request)
+
+def send_history(request):
+	return summary(request)
+
 def summary(request):
 	all_events = Event.objects.all()
-	context = {'all_events': all_events,}
+	context = {'all_events': all_events, 'title': 'List of Events', 'history': 'History'}
 	return render(request, 'ep/summary.html', context)
 
 def new(request):
@@ -36,7 +39,7 @@ def new(request):
 				return redirect('ep:summary')
 	else:
 		form = EventForm()
-	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Enter', 'return_func':'ep:new'})
+	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Enter'})
 
 # Updates existing entry when user presses the save button on the Edit Event page
 def update(request, pk):
@@ -55,7 +58,7 @@ def update(request, pk):
 				return redirect('ep:summary')
 	else:
 		form = EventForm(instance=event)
-	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Update', 'return_func':'ep:update', 'param':event.pk})
+	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Update'})
 
 
 def view_event(request, pk):

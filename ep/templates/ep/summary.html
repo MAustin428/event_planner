@@ -10,10 +10,10 @@
 </head>
 <body>
 <div i="titleBar">
-	<h1>List of Events</h1>
+	<h1>{{ title }}</h1>
 	<ul>
 		<li class="button"><a href="{% url 'ep:new' %}">New</a></li>
-		<li class="button">History</li>
+		<li class="button"><a href="{% url 'ep:history' title %}">{{ history }}</a></li>
 	</ul>
 </div>
 <div id="eventList">
@@ -31,6 +31,7 @@
 	      <td>{{ event.assoc_name }}</td>
 	      <td class="button"><a href="{% url 'ep:view_event' pk=event.pk%}">View</a></td>
 	      <td class="button"><a href="{% url 'ep:update' pk=event.pk %}">Edit</a></td>
+	      <td class="button"><a href="{% url 'ep:send_history'%}">Send to History</a></td>
 	    </tr>
 	{% endfor %}
   </table>

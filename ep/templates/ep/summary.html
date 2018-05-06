@@ -29,8 +29,8 @@
 	      <td>{{ event.cust_name }}</td>
 	      <td>{{ event.event_date }}</td>
 	      <td>{{ event.assoc_name }}</td>
-	      <td class="button">View</td>
-	      <td class="button">Edit</td>
+	      <td class="button"><a href="{% url 'ep:view_event' %}">View</a></td>
+	      <td class="button"><a href="{% url 'ep:update' pk=event.pk %}">Edit</a></td>
 	    </tr>
 	{% endfor %}
   </table>

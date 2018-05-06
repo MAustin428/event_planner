@@ -7,5 +7,6 @@ app_name = 'ep'
 urlpatterns = [
     path('', views.summary, name='summary'),
     path('new/', views.new, name='new'),
-    path('create_entry/', views.create_entry, name='create_entry'),
+    path('event/', views.view_event, name='view_event'),
+    path('edit/<pk>/', views.update, name='update'),
 ]

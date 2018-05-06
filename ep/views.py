@@ -38,34 +38,14 @@ def new(request):
 		form = EventForm()
 	return render(request, 'ep/InformationReader.html', {'form': form})
 
-
-# Creates new entry when user presses the save button on the Create Event page
-def create_entry(request):
-	if request.method == 'POST':
-		form = EventForm(request.POST)
-		if form.is_valid():
-			return HttpResponseRedirect('')
-
-
-
-#	v = []
-	
-#	t = Event.objects.create()
-
-#	for x in pdl2:
-#		b = t.event_item_set.create(product_name = x[0], product_size = x[1], product_cost = x[2], product_qty = x[3])
-
-#	i = 0
-#	if e_list:
-#		while datetime.strptime(t.event_date, '%Y-%m-%d').date() < e_list[i].event_date:
-#			i += 1
-
-#	e_list.insert(i, t)
-
 # Updates existing entry when user presses the save button on the Edit Event page
-def update_entry(e_list_entry, ___vals___):
-	e_list_entry.data = ___vals___
-	e_list_entry.save()
+def update(request, pk):
+	event = get_object_or_404(Event, pk=pk)
+	return render(request, 'ep/view_event.html')
+
+def view_event(request, pk):
+	event = get_object_or_404(Event, pk=pk)
+	return render(request, 'ep/view_event.html', pk=event.pk)
 
 # Returns event information when user presses the View Event button
 def view_entry(entry_index):

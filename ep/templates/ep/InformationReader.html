@@ -6,6 +6,18 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:hover {
+  background-color: lightgray;
+}
+
 .formInput{
   display: block;
     width: 90%;
@@ -30,7 +42,7 @@ form {border: 3px solid #f1f1f1;}
   border-left: 1px solid #CCCCCC;
   
 table {
-    font-family: arial, sans-serif;
+    font-family: Arial, sans-serif;
     border-collapse: collapse;
 }
 
@@ -53,7 +65,7 @@ th {
 <h2>Edit/New Event</h2>
 
 
-<form action="{% url 'ep:new' %}" method="post">
+<form method="POST">
   {% csrf_token %}
 
     <p class="formInput">Associate Name: {{form.assoc_name}}</p>
@@ -65,18 +77,20 @@ th {
     <p class="formInput">Event Date: {{form.event_date}}</p>
 
     <p class="formInput">Pickup Date: {{form.pickup_date}}</p>
-<hr width="95%>
+<hr width="95%">
     <p class="formInput">Total Drinks Purchased: {{form.total_amt}}</p>
-<hr width="95%>
-      <p class="formInput">Total Amount: {{form.total_cost}}</p>
+<hr width="95%">
+    <p class="formInput">Total Amount: {{form.total_cost}}</p>
     <p class="formInput">Return Amount: {{form.return_amt}}</p>
+
 <table>
-        <tr>
-    <td><input type="submit" name="cancel" value="Cancel" formnovalidate="formnovalidate" class="button"></td>
+  <tr>
+  <td><input type="submit" name="cancel" value="Cancel" formnovalidate></td>
   <td><input type="reset" value="Reset" class="button"></td>
-  <td><input type="submit" name="submit" value="Save" class="button"></td>
+  <td><input type="submit" name="submit" value="Save"></td>
   </tr>
-  </table>
+</table>
+
 </form>
 
 </body>

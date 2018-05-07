@@ -9,7 +9,7 @@ from datetime import datetime
 # Create your views here.
 def history(request, title):
 	if(title == 'List of Events'):
-		all_events = Event.objects.filter(in_history=True)
+		all_events = Event.objects.filter(in_history=True).order_by('-event_date')
 		context = {'all_events': all_events, 'title': 'History', 'history': 'Events', 'send': 'Return to live'}
 		return render(request, 'ep/summary.html', context)
 	else:
@@ -17,31 +17,29 @@ def history(request, title):
 
 def send_history(request, pk):
 	event = get_object_or_404(Event, pk=pk)
-	if(event.in_history):
-		event.in_history=False
-		event.save()
-		return redirect('ep:summary')
-	else:
-		event.in_history=True
-		event.save()
-		return redirect('ep:summary')
+	event.in_history = not event.in_history
+	event.save()
+	return redirect('ep:summary')
 
 def summary(request):
-	all_events = Event.objects.filter(in_history=False)
+	all_events = Event.objects.filter(in_history=False).order_by('event_date')
 	context = {'all_events': all_events, 'title': 'List of Events', 'history': 'History', 'send': 'Send to History'}
 	return render(request, 'ep/summary.html', context)
 
 def new(request):
 	if request.method == 'POST':
 		if 'cancel' in request.POST:
+			print('Cancel')
 			return redirect('ep:summary')
 		else:
 			form = EventForm(request.POST)
 			if form.is_valid():
 				post = form.save(commit=False)
+				post.in_history = False
 				post.entry_date = datetime.today()
 				post.save()
-				return redirect('ep:summary')
+				context = {'all_events': all_events, 'title': 'List of Events', 'history': 'History', 'send': 'Send to History'}
+				return render(request, 'ep/summary.html', context)
 	else:
 		form = EventForm()
 	return render(request, 'ep/InformationReader.html', {'form': form, 'button_value': 'Enter'})
@@ -50,7 +48,6 @@ def new(request):
 def update(request, pk):
 	event = get_object_or_404(Event, pk=pk)
 	if request.method == "POST":
-		print(request.method)
 		if 'cancel' in request.POST:
 			return redirect('ep:summary')
 		elif 'delete' in request.POST:
@@ -68,7 +65,6 @@ def update(request, pk):
 def view_event(request, pk):
 	event = get_object_or_404(Event, pk=pk)
 	if request.method == "POST":
-		print(request.method)
 		if 'cancel' in request.POST:
 			return redirect('ep:summary')
 		elif 'delete' in request.POST:

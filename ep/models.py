@@ -4,7 +4,7 @@ import datetime
 # Create your models here.
 
 class Event(models.Model):
-	in_history = models.BooleanField(default=False)
+	in_history = models.BooleanField(default=False, blank=True)
 	cust_name = models.CharField(max_length=30)
 	# Add customer email here
 	# Require either email or customer phone number
@@ -13,7 +13,7 @@ class Event(models.Model):
 	pickup_date = models.DateField('pickup date', blank=True)
 
 	assoc_name = models.CharField(max_length=30)
-	entry_date = models.DateField('date published', default=datetime.date.today)
+	entry_date = models.DateField('date published', default=datetime.date.today, blank=True)
 
 	#product_list = models.ManyToManyField(Event_Item, blank=True)
 

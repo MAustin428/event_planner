@@ -55,7 +55,7 @@ th {
 <form action="{% url 'ep:new' %}" method="post">
   {% csrf_token %}
 
-    <p class="formInput">To History?: {{form.in_history.value}}</p>
+    <p class="formInput">Active?: {{form.in_history.value|yesno:"False,True"}}</p>
 
     <p class="formInput">Entry Date: {{form.entry_date.value}}</p>
 

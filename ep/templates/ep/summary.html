@@ -31,7 +31,7 @@
 	      <td>{{ event.assoc_name }}</td>
 	      <td class="button"><a href="{% url 'ep:view_event' pk=event.pk%}">View</a></td>
 	      <td class="button"><a href="{% url 'ep:update' pk=event.pk %}">Edit</a></td>
-	      <td class="button"><a href="{% url 'ep:send_history'%}">Send to History</a></td>
+	      <td class="button"><a href="{% url 'ep:send_history' pk=event.pk %}">{{ send }}</a></td>
 	    </tr>
 	{% endfor %}
   </table>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+form {border: 3px solid #f1f1f1;}
+
+.formInput{
+	display: block;
+    width: 90%;
+    padding: 1px 20px;
+    margin: 10px auto;
+    display: inline-block;
+    border: 0px solid #ccc;
+    box-sizing: border-box;
+	text-align: left;
+
+}
+
+.button {
+  font: bold 11px Arial;
+  text-decoration: none;
+  background-color: #EEEEEE;
+  color: #333333;
+  padding: 2px 6px 2px 6px;
+  border-top: 1px solid #CCCCCC;
+  border-right: 1px solid #333333;
+  border-bottom: 1px solid #333333;
+  border-left: 1px solid #CCCCCC;
+  
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+th {
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+}
+
+</style>
+</head>
+<body>
+
+<h2>Edit/New Event</h2>
+
+<form action="{% url 'ep:new' %}" method="post">
+  {% csrf_token %}
+
+    <p class="formInput">To History?: {{form.in_history.value}}</p>
+
+    <p class="formInput">Entry Date: {{form.entry_date.value}}</p>
+
+    <p class="formInput">Associate Name: {{form.assoc_name.value}}</p>
+
+    <p class="formInput">Customer Name: {{form.cust_name.value}}</p>
+
+    <p class="formInput">Customer Phone Number: {{form.cust_phone.value}}</p>
+
+    <p class="formInput">Event Date: {{form.event_date.value}}</p>
+
+    <p class="formInput">Pickup Date: {{form.pickup_date.value}}</p>
+<hr width="95%>
+    <p class="formInput">Total Drinks Purchased: {{form.total_amt.value}}</p>
+<hr width="95%>
+	    <p class="formInput">Total Amount: {{form.total_cost.value}}</p>
+    <p class="formInput">Return Amount: {{form.return_amt.value}}</p>
+<table>
+        <tr>
+    <td><input type="submit" name="cancel" value="Cancel" formnovalidate="formnovalidate" class="button"></td>
+  </table>
+</form>
+
+</body>
+</html>

@@ -56,11 +56,6 @@ th {
 <form action="{% url 'ep:new' %}" method="post">
   {% csrf_token %}
 
-
-    <p class="formInput">To History?: {{form.in_history}}</p>
-
-    <p class="formInput">Entry Date: {{form.entry_date}}</p>
-
     <p class="formInput">Associate Name: {{form.assoc_name}}</p>
 
     <p class="formInput">Customer Name: {{form.cust_name}}</p>

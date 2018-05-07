@@ -24,6 +24,7 @@ class Event(models.Model):
 	#food_pairing = models.TextField()
 	#cust_notes = models.TextField()
 	#num_guests = models.IntegerField('number of gusts', default=0, blank=True)
+	
 class Event_Item(models.Model):
 	event = models.ForeignKey(Event, on_delete=models.CASCADE)
 	product_name = models.CharField(max_length=40, blank=True)

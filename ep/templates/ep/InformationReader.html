@@ -78,6 +78,10 @@ th {
 
     <p class="formInput">Pickup Date: {{form.pickup_date}}</p>
 <hr width="95%">
+  {% for item in event_items %}
+  <button type="button" action="{{ items }}">Add Item</button>
+  {% endfor %}
+<hr width="95%">
     <p class="formInput">Total Drinks Purchased: {{form.total_amt}}</p>
 <hr width="95%">
     <p class="formInput">Total Amount: {{form.total_cost}}</p>

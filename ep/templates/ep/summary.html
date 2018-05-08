@@ -1,21 +1,21 @@
 <head>
 	<style>
-body {font-family: Arial, Helvetica, sans-serif;}
+	body {font-family: Arial, Helvetica, sans-serif; background-color: #fff9d8}
 
 	a:link {color: black; text-decoration: none;}
 	a:visited {color: black;}
 	a:hover {background-color: #f3f3f3; text-decoration: underline;}
-
-		h1 {font-size: 36px; font-variant: small-caps; padding-left: 100px;}
-		li {display: inline-block;}
-		td {font-size: 18px}
-		.button {border-bottom: 2px solid black; border-right: 2px solid black; 
-				border-bottom-right-radius: 10px; padding-right: 5px;}
-		table {border-spacing: 10px;}
+	#titleBar {background-color: #821f09; padding-bottom: 10px; color: white;}
+	h1 {font-size: 36px; font-variant: small-caps; padding-left: 100px; color: white;}
+	li {display: inline-block;}
+	td {font-size: 18px}
+	.button {border-bottom: 2px solid white; border-right: 2px solid white; 
+			border-bottom-right-radius: 10px; padding-right: 5px;}
+	table {border-spacing: 10px;}
 	</style>
 </head>
 <body>
-<div i="titleBar">
+<div id="titleBar">
 	<h1>{{ title }}</h1>
 	<ul>
 		<li class="button"><a href="{% url 'ep:new' %}">New</a></li>

@@ -50,6 +50,7 @@ def new(request):
 					post.in_history = False
 					post.entry_date = datetime.today()
 					post.save()
+					all_events = Event.objects.filter(in_history=False).order_by('pickup_date')
 					context = {'all_events': all_events, 'title': 'List of Events', 'history': 'History', 'send': 'Send to History'}
 					return render(request, 'ep/summary.html', context)
 		else:
